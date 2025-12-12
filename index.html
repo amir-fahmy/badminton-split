@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badmin Pay</title>
+
+    <style>
+        body {
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .card {
+            background-color: rgb(38, 160, 233);
+            box-shadow: 10px 10px 5px rgb(214, 232, 238);
+            border-radius: 10px;
+            padding: 30px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgb(235, 235, 235);
+            margin: 45px;
+        }
+
+        .card-header {
+            font-weight: 600;
+            font-size: 36px;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 40px 0px 10px 0px;
+        }
+
+        .input-group {
+            display: flex;
+            width: 70%;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0px 10px 0px;
+        }
+
+        input[type="number"] {
+            transition: 180ms box-shadow ease-in-out;
+            border-radius: 4px;
+            font-family: inherit;
+            padding: 0.45em 0.85em;
+            border: 2px solid rgb(38, 160, 233);
+        }
+
+        input[type="number"]:focus {
+            border-color: rgb(16, 189, 237);
+            box-shadow: 0px 0px 10px rgba(214, 232, 238);
+            outline: 3px solid transparent;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 45px;
+        }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Your visible content goes here, e.g., a heading and paragraph -->
+    <div class="card">
+
+        <div class="card-header">
+            BadminPAY
+        </div>
+
+        <div class="card-content">
+            <div class="input-group">
+                <label>Court Price</label>
+                <input type="number" name="court_price">
+            </div>
+
+            <div class="input-group">
+                <label>Shuttle Price (total)</label>
+                <input type="number" name="shuttle_price">
+            </div>
+
+            <div class="input-group">
+                <label>Shuttle Used</label>
+                <input type="number" name="shuttle_num">
+            </div>
+
+            <div class="input-group">
+                <label>Number of Players</label>
+                <input type="number" name="players_num">
+            </div>
+
+            <div id="total" class="result">
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        const inputElems = document.querySelectorAll('input');
+        let totalElem = document.getElementById('total');
+        let totalVal;
+        let courtPrice;
+        let shuttlePrice;
+        let shuttleNum;
+        let playerNum;
+
+        function handleInputChange(event) {
+            courtPrice = parseFloat(document.getElementsByName('court_price')[0]?.value ?? 0);
+            shuttlePrice = parseFloat(document.getElementsByName('shuttle_price')[0]?.value ?? 0);
+            shuttleNum = parseFloat(document.getElementsByName('shuttle_num')[0]?.value ?? 0);
+            playerNum = parseFloat(document.getElementsByName('players_num')[0]?.value ?? 0);
+
+            if (courtPrice > 0 && shuttlePrice > 0 && shuttleNum > 0 && playerNum > 0) {
+                totalVal = (courtPrice + ((shuttlePrice / 12) * shuttleNum)) / playerNum;
+                totalElem.innerHTML = "RM " + totalVal;
+            }
+        }
+
+        inputElems.forEach(input => {
+            input.addEventListener('input', handleInputChange);
+        });
+    </script>
+</body>
+</html>
