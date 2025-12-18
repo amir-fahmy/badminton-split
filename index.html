@@ -8,6 +8,16 @@
     <style>
         body {
             font-family: "Ubuntu", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: rgb(228, 242, 253);
         }
 
         .card {
@@ -21,6 +31,8 @@
             justify-content: center;
             color: rgb(235, 235, 235);
             margin: 45px;
+            width: 100%;
+            max-width: 500px;
         }
 
         .card-header {
@@ -77,38 +89,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Your visible content goes here, e.g., a heading and paragraph -->
-    <div class="card">
+    <div class="container">
+        <!-- Your visible content goes here, e.g., a heading and paragraph -->
+        <div class="card">
 
-        <div class="card-header">
-            BadminPAY
+            <div class="card-header">
+                BadminPAY
+            </div>
+
+            <div class="card-content">
+                <div class="input-group">
+                    <label>Court Price</label>
+                    <input type="number" name="court_price">
+                </div>
+
+                <div class="input-group">
+                    <label>Shuttle Price (total)</label>
+                    <input type="number" name="shuttle_price">
+                </div>
+
+                <div class="input-group">
+                    <label>Shuttle Used</label>
+                    <input type="number" name="shuttle_num">
+                </div>
+
+                <div class="input-group">
+                    <label>Number of Players</label>
+                    <input type="number" name="players_num">
+                </div>
+
+                <div id="total" class="result">
+                </div>
+            </div>
+            
         </div>
-
-        <div class="card-content">
-            <div class="input-group">
-                <label>Court Price</label>
-                <input type="number" name="court_price">
-            </div>
-
-            <div class="input-group">
-                <label>Shuttle Price (total)</label>
-                <input type="number" name="shuttle_price">
-            </div>
-
-            <div class="input-group">
-                <label>Shuttle Used</label>
-                <input type="number" name="shuttle_num">
-            </div>
-
-            <div class="input-group">
-                <label>Number of Players</label>
-                <input type="number" name="players_num">
-            </div>
-
-            <div id="total" class="result">
-            </div>
-        </div>
-        
     </div>
 
     <script>
